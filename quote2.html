@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trader's Master Journal</title>
+    <style>
+        :root {
+            --iconic-color: #4CAF50;
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            margin: 0;
+            min-width: 300px;
+        }
+
+        .settings-panel {
+            display: block !important; /* Принудительно показываем панель */
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Добавлены недостающие стили */
+        #quoteList {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .quote-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #3a3a3a;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Trader's Master Journal</h2>
+    </div>
+
+    <!-- Добавлен обязательный контейнер -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="color-picker">
+            <div class="color-option" style="background: #4CAF50"></div>
+            <div class="color-option" style="background: #2196F3"></div>
+            <div class="color-option" style="background: #9C27B0"></div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="showAddQuoteModal()">Add New Quote</button>
+        </div>
+    </div>
+
+    <!-- Исправленный контейнер для цитат -->
+    <div id="quoteList"></div>
+
+    <script>
+        // Упрощенная версия скрипта
+        let config = {
+            quotes: [
+                {text: "Пример цитаты 1", category: "trader"},
+                {text: "Пример цитаты 2", category: "blue"}
+            ]
+        };
+
+        function loadQuotes() {
+            const container = document.getElementById('quoteList');
+            container.innerHTML = config.quotes.map(quote => `
+                <div class="quote-item">
+                    ${quote.text}
+                    <div style="background: ${quote.category === 'trader' ? '#4CAF50' : '#2196F3'}; 
+                              padding: 3px 8px; 
+                              border-radius: 12px;">
+                        ${quote.category}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Первоначальная загрузка
+        loadQuotes();
+    </script>
+</body>
+</html>
